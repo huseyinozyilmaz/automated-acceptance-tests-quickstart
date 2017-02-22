@@ -3,7 +3,7 @@ package org.huseyin.bdd.step.definitions.authentication;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.huseyin.bdd.page.objects.LoginPage;
+import org.huseyin.bdd.page.objects.authentication.LoginPage;
 
 import static org.junit.Assert.assertTrue;
 
