@@ -32,3 +32,6 @@ Desktop.ini
 .classpath
 .settings
 .project
+
+#Node artifacts
+node_modules/
