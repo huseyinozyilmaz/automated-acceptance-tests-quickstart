@@ -51,6 +51,11 @@ public abstract class AbstractPage {
     private void waitForDropdownItems(WebElement element) {
         WebDriverWait wait = new WebDriverWait(getDriver(),waitTimeOutSeconds );
         wait.until(ExpectedConditions.elementToBeClickable(element));
+        wait.until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return element.findElements(By.tagName("option")).size() > 1;
+            }
+        });
     }
 
     protected WebElement find(By locator) {
