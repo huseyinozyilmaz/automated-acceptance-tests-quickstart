@@ -1,4 +1,4 @@
-package org.huseyin.bdd.step.definitions;
+package org.huseyin.bdd.step.definitions.authentication;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;

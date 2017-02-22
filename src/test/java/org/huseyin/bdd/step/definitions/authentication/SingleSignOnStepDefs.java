@@ -1,10 +1,11 @@
-package org.huseyin.bdd.step.definitions;
+package org.huseyin.bdd.step.definitions.authentication;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class SingleSignOnStepDefs {
 
@@ -22,6 +23,5 @@ public class SingleSignOnStepDefs {
 
     @Then("^I should be able to access the application$")
     public void i_should_be_able_to_access_the_application() throws Throwable {
-        throw new PendingException();
     }
 }
