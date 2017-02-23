@@ -1,5 +1,6 @@
 package org.huseyin.bdd.page.objects;
 
+import org.huseyin.bdd.config.TestProperties;
 import org.huseyin.bdd.config.webdriver.SharedDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
@@ -17,8 +18,8 @@ public abstract class AbstractPage {
     public AbstractPage(String path) {
         this.path = path;
         this.driver = new SharedDriver();
-        this.waitTimeOutSeconds = 10;
-        this.baseUrl = "http://localhost:3000";
+        this.waitTimeOutSeconds = TestProperties.getSeleniumWaitTimeOutSeconds();
+        this.baseUrl = TestProperties.getApplicationBaseUrl();
     }
 
     public WebDriver getDriver() {

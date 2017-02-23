@@ -1,5 +1,6 @@
 package org.huseyin.bdd.page.objects.large_cities;
 
+import org.huseyin.bdd.config.TestProperties;
 import org.huseyin.bdd.page.objects.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -32,16 +33,20 @@ public class CitySelectionPage extends AbstractPage {
     }
 
     public void selectCity(String continent, String country, String city) {
-        new WebDriverWait(getDriver(), 10).until(ExpectedConditions.elementToBeClickable(continentSelect));
+        new WebDriverWait(getDriver(), TestProperties.getSeleniumWaitTimeOutSeconds())
+                .until(ExpectedConditions.elementToBeClickable(continentSelect));
         selectDropdownByText(continentSelect, continent);
-        new WebDriverWait(getDriver(), 10).until(ExpectedConditions.elementToBeClickable(countrySelect));
+        new WebDriverWait(getDriver(), TestProperties.getSeleniumWaitTimeOutSeconds())
+                .until(ExpectedConditions.elementToBeClickable(countrySelect));
         selectDropdownByText(countrySelect, country);
-        new WebDriverWait(getDriver(), 10).until(ExpectedConditions.elementToBeClickable(citySelect));
+        new WebDriverWait(getDriver(), TestProperties.getSeleniumWaitTimeOutSeconds())
+                .until(ExpectedConditions.elementToBeClickable(citySelect));
         selectDropdownByText(citySelect, city);
         select.click();
     }
 
     public boolean isReportShown(String city) {
-        return new WebDriverWait(getDriver(), 10).until(ExpectedConditions.textToBePresentInElementLocated(selectedCityHeader, city));
+        return new WebDriverWait(getDriver(), TestProperties.getSeleniumWaitTimeOutSeconds())
+                .until(ExpectedConditions.textToBePresentInElementLocated(selectedCityHeader, city));
     }
 }

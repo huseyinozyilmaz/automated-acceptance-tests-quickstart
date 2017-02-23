@@ -1,5 +1,6 @@
 package org.huseyin.bdd.page.objects.authentication;
 
+import org.huseyin.bdd.config.TestProperties;
 import org.huseyin.bdd.page.objects.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -29,13 +30,12 @@ public class LoginPage extends AbstractPage {
 
     public LoginPage() {
         super(PATH);
-        System.out.println("Login Page Constructor");
         PageFactory.initElements(getDriver(), this);
     }
 
     public void login() {
-        setText(email, "valid@email.com");
-        setText(password, "secret");
+        setText(email, TestProperties.getLoginValidUsername());
+        setText(password, TestProperties.getLoginValidPassword());
         submit.submit();
     }
 
@@ -50,12 +50,12 @@ public class LoginPage extends AbstractPage {
     }
 
     public boolean isLoginFailed() {
-        return new WebDriverWait(getDriver(), 10)
+        return new WebDriverWait(getDriver(), TestProperties.getSeleniumWaitTimeOutSeconds())
                 .until(ExpectedConditions.textToBePresentInElementLocated(failure, "Enter a valid email address and a password to login"));
     }
 
     public boolean isAuthorised() {
-        return new WebDriverWait(getDriver(), 10)
+        return new WebDriverWait(getDriver(), TestProperties.getSeleniumWaitTimeOutSeconds())
                 .until(ExpectedConditions.textToBePresentInElementLocated(success, "Your login is successful"));
     }
 }
