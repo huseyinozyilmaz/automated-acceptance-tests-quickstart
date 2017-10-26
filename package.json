@@ -4,7 +4,7 @@
   "description": "automated-acceptance-tests-quickstart",
   "author": "Huseyin Ozyilmaz <huseyin.ozyilmaz@woodgroup.com>",
   "scripts": {
-    "test": "gherkin-lint"
+    "test": "gherkin-lint ./src/test/resources/features/"
   },
   "repository": {
     "type": "git",
