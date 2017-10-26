@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "automated-acceptance-tests-quickstart",
   "author": "Huseyin Ozyilmaz <huseyin.ozyilmaz@woodgroup.com>",
+  "scripts": {
+    "test": "gherkin-lint"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/huseyinozyilmaz/automated-acceptance-tests-quickstart.git"
@@ -11,7 +14,7 @@
     "Selenium", "Cucumber", "Maven"
   ],
   "dependencies": {
-    "gherkin-lint": "^2.1.0"
+    "gherkin-lint": "^2.6.0"
   },
   "license": "MIT"
 }

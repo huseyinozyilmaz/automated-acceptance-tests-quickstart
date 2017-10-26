@@ -16,6 +16,7 @@
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
+        <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
 
         <acceptance.test.parallel.count>2</acceptance.test.parallel.count>
         <applicationUrl>http://localhost:3000</applicationUrl>
@@ -132,7 +133,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
-                            <executable>npm.cmd</executable>
+                            <executable>npm</executable>
                             <arguments>
                                 <argument>install</argument>
                             </arguments>
@@ -145,9 +146,9 @@
                         </goals>
                         <phase>process-resources</phase>
                         <configuration>
-                            <executable>node_modules/.bin/gherkin-lint.cmd</executable>
+                            <executable>npm</executable>
                             <arguments>
-                                <argument>./src/test/resources/features/</argument>
+                                <argument>test</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -173,6 +174,17 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-clean-plugin.version}</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>node_modules</directory>
+                        </fileset>
+                    </filesets>
                 </configuration>
             </plugin>
         </plugins>
