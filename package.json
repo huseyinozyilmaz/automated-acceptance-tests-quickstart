@@ -11,10 +11,13 @@
     "url": "https://github.com/huseyinozyilmaz/automated-acceptance-tests-quickstart.git"
   },
   "keywords": [
-    "Selenium", "Cucumber", "Maven"
+    "Selenium",
+    "Cucumber",
+    "Maven"
   ],
-  "dependencies": {
+  "license": "MIT",
+  "devDependencies": {
+    "chromedriver": "^2.33.2",
     "gherkin-lint": "^2.6.0"
-  },
-  "license": "MIT"
+  }
 }

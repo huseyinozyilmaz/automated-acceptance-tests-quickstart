@@ -6,17 +6,15 @@ import cucumber.api.java.Before;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 public class SharedDriver extends EventFiringWebDriver {
 
-    private static final WebDriver REAL_DRIVER = new FirefoxDriver();
+    private static WebDriver REAL_DRIVER;
     private static final Thread CLOSE_THREAD = new Thread() {
         @Override
         public void run() {
-            REAL_DRIVER.close();
-            REAL_DRIVER.quit();
+            quitGlobalInstance();
         }
     };
 
@@ -25,7 +23,21 @@ public class SharedDriver extends EventFiringWebDriver {
     }
 
     public SharedDriver() {
-        super(REAL_DRIVER);
+        super(getDriver());
+    }
+
+    private static void quitGlobalInstance() {
+        if (REAL_DRIVER != null) {
+            REAL_DRIVER.close();
+            REAL_DRIVER.quit();
+        }
+    }
+
+    private static WebDriver getDriver() {
+        if (REAL_DRIVER == null) {
+            REAL_DRIVER = WebDriverFactory.create();
+        }
+        return REAL_DRIVER;
     }
 
     @Override
@@ -38,6 +50,14 @@ public class SharedDriver extends EventFiringWebDriver {
         } catch (Throwable e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void quit() {
+        if (Thread.currentThread() != CLOSE_THREAD) {
+            throw new UnsupportedOperationException("You shouldn't quit this WebDriver. It's shared and will quit when the JVM exits.");
+        }
+        super.quit();
     }
 
     @Before
