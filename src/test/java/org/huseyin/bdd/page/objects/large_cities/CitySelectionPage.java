@@ -8,8 +8,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CitySelectionPage extends AbstractPage {
+
+    static final Logger Log = LoggerFactory.getLogger(CitySelectionPage.class);
 
     public static final String PATH = "/cities";
 
@@ -33,6 +37,7 @@ public class CitySelectionPage extends AbstractPage {
     }
 
     public void selectCity(String continent, String country, String city) {
+        Log.info("Selecting City {} > {} > {}", continent, country, city);
         new WebDriverWait(getDriver(), TestProperties.getSeleniumWaitTimeOutSeconds())
                 .until(ExpectedConditions.elementToBeClickable(continentSelect));
         selectDropdownByText(continentSelect, continent);

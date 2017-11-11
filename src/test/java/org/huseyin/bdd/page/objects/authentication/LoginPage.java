@@ -8,9 +8,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LoginPage extends AbstractPage {
 
+    static final Logger Log = LoggerFactory.getLogger(LoginPage.class);
     public static final String PATH = "/login";
 
     private final By success = By.cssSelector("p.login-welcome-msg");
@@ -40,6 +43,7 @@ public class LoginPage extends AbstractPage {
     }
 
     public void login(String username, String secret) {
+        Log.info("Attempting to login with username and password");
         setText(email, username);
         setText(password, secret);
         submit.submit();
