@@ -13,7 +13,7 @@
         <selenium.version>3.0.1</selenium.version>
         <junit.version>4.12</junit.version>
         <logback.version>1.2.3</logback.version>
-        <cucumber-jvm-parallel-plugin.version>2.2.0</cucumber-jvm-parallel-plugin.version>
+        <cucumber-jvm-parallel-plugin.version>4.2.0</cucumber-jvm-parallel-plugin.version>
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
@@ -79,8 +79,10 @@
                         </goals>
                         <configuration>
                             <!-- Mandatory -->
-                            <!-- comma separated list of package names to scan for glue code -->
-                            <glue>org.huseyin.bdd.step.definitions</glue>
+                            <!-- List of package names to scan for glue code. -->
+                            <glue>
+                                <package>org.huseyin.bdd.step.definitions</package>
+                            </glue>
                             <!-- These are optional, with the default values -->
                             <!-- Where to output the generated tests -->
                             <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
@@ -88,16 +90,23 @@
                             <featuresDirectory>src/test/resources/features/</featuresDirectory>
                             <!-- Directory where the cucumber report files shall be written  -->
                             <cucumberOutputDir>${project.build.directory}/cucumber-reports</cucumberOutputDir>
-                            <!-- comma separated list of output formats -->
-                            <format>json,html</format>
+                            <!-- List of cucumber plugins. When none are provided the json formatter is used. For more advanced usage see section about configuring cucumber plugins -->
+                            <plugins>
+                                <plugin>
+                                    <name>json</name>
+                                </plugin>
+                                <plugin>
+                                    <name>html</name>
+                                </plugin>
+                            </plugins>
                             <!-- CucumberOptions.strict property flag will cause cucumber to fail unless all the step definitions have been defined-->
                             <strict>false</strict>
                             <!-- CucumberOptions.monochrome property -->
                             <monochrome>true</monochrome>
                             <!-- The tags to run, maps to CucumberOptions.tags property -->
-                            <tags>"~@manual"</tags>
-                            <!-- If set to true, only feature files containing the required tags shall be generated. -->
-                            <filterFeaturesByTags>false</filterFeaturesByTags>
+                            <tags>
+                                <tag>~@manual</tag>
+                            </tags>
                             <!-- The naming scheme to use for the generated test classes.  One of 'simple' or 'feature-title' -->
                             <namingScheme>feature-title</namingScheme>
                             <!-- One of [SCENARIO, FEATURE]. SCENARIO generates one runner per scenario.  FEATURE generates a runner per feature. -->
